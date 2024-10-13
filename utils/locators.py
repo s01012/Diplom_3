@@ -35,7 +35,7 @@ class AccountAccessLocators:
     AUTHORIZATION_BUTTON_AUTHORIZATION_FORM = [By.XPATH, './/form[@class="Auth_form__3qKeq mb-20"]/button[text('
                                                          ')="Войти"]']  # Кнопка войти в форме авторизации
 
-    RESTORE_PASSWORD_BUTTON = [By.XPATH, '//p[text()="Забыли пароль?"]/a[text()="Восстановить пароль"]']
+    RESTORE_PASSWORD_LINK = [By.XPATH, '//p[text()="Забыли пароль?"]/a[text()="Восстановить пароль"]']
     # Ссылка на форму восстановления пароля
 
 
