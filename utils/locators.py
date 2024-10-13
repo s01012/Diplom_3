@@ -22,7 +22,7 @@ class AccountProfileLocators:
 
 class AccountAccessLocators:
 
-    Authorization_form_title = [By.XPATH, '//h2[text()="Вход"]'] # Заголовок формы авторизации
+    AUTHORIZATION_FORM_TITLE = [By.XPATH, '//h2[text()="Вход"]'] # Заголовок формы авторизации
 
     EMAIL_INPUT_AUTHORIZATION_FORM = [By.XPATH, '//div[h2[text()="Вход"]]/descendant::label[text('
                                                 ')="Email"]/following-sibling::input']  # Поле ввода эл.почты в форме
@@ -35,8 +35,7 @@ class AccountAccessLocators:
     AUTHORIZATION_BUTTON_AUTHORIZATION_FORM = [By.XPATH, './/form[@class="Auth_form__3qKeq mb-20"]/button[text('
                                                          ')="Войти"]']  # Кнопка войти в форме авторизации
 
-    RESTORE_PASSWORD_LINK = [By.XPATH, '//p[text()="Забыли пароль?"]/a[text()="Восстановить пароль"]']
-    # Ссылка на форму восстановления пароля
+
 
 
 class PasswordRecoveryLocators:
@@ -49,11 +48,19 @@ class PasswordRecoveryLocators:
     RESTORE_PASSWORD_BUTTON = [By.XPATH, '//button[text()="Восстановить"]']
     # Кнопка "Восстановить" в форме восстановления пароля
 
-    PASSWORD_VISIBILITY_BUTTON = [By.XPATH, '//div[contains(@class, "input__icon-action")]'] # Кнопка вкл видимости
-    # пвроля в форме восстановления пароля
+    PASSWORD_VISIBILITY_BUTTON = [By.XPATH, '//div[contains(@class, "icon-action")]'] # Кнопка вкл видимости
+    # пароля в форме восстановления пароля
 
-    SAVE_BUTTON_IN_RECOVERY_FORM_TITLE = [By.XPATH, '//button[text()="Сохранить"]'] # Кнопка "Сохраниить" в форме
+    SAVE_BUTTON_IN_RECOVERY_FORM = [By.XPATH, '//button[text()="Сохранить"]'] # Кнопка "Сохраниить" в форме
     # восстановления пароля
+
+    ACTIVE_PASSWORD_INPUT_RECOVERY_FORM = [By.CSS_SELECTOR, '.input.input_status_active'] # Состояние активного поля
+    # пароль
+
+    RESTORE_PASSWORD_LINK = [By.XPATH, '//p[text()="Забыли пароль?"]/a[text()="Восстановить пароль"]']
+    # Ссылка на форму восстановления пароля
+
+    RESTORE_LABEL_IN_INPUT_CODE = [By.XPATH, '//label[text()="Введите код из письма"]']
 
 
 
