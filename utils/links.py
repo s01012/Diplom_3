@@ -1,6 +1,6 @@
 class Links:
     main_page = 'https://stellarburgers.nomoreparties.site'
-    login_page = 'https://stellarburgers.nomoreparties.site/login/'
+    login_page = 'https://stellarburgers.nomoreparties.site/login'
     feed_page = 'https://stellarburgers.nomoreparties.site/feed'
     profile_page = 'https://stellarburgers.nomoreparties.site/account/profile'
     profile_order_history_page = 'https://stellarburgers.nomoreparties.site/account/order-history'
