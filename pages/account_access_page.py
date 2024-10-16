@@ -22,6 +22,6 @@ class AccountAccessPage(HomePage):
     def click_link_order_history(self):
         self.click_element(AccountProfileLocators.LINK_TO_HISTORY_ORDER)
 
-    # @allure.step('Клик на кнопку "Выйти" в личном кабинете')
-    # def set_email(self):
-    #     self.set_text(AccountProfileLocators.BUTTON_TO_EXIT)
+    @allure.step('Клик на кнопку "Выйти" в личном кабинете')
+    def click_to_exit_button(self):
+        self.click_element(AccountProfileLocators.BUTTON_TO_EXIT)

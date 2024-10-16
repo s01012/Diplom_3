@@ -19,6 +19,10 @@ class AccountProfileLocators:
 
     TEXT_IN_ACCOUNT_PROFILE = [By.XPATH, '//p[text()="В этом разделе вы можете изменить свои персональные данные"]']
 
+    SAVE_BUTTON = [By.XPATH, '//button[text()="Сохранить"]']
+
+    OVERLAY = [By.XPATH, "//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"]
+
 
 class AccountAccessLocators:
 
