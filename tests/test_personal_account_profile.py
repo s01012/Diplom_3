@@ -1,5 +1,3 @@
-import time
-
 import allure
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,6 +8,7 @@ from pages.account_access_page import AccountAccessPage
 
 class TestPersonalAccountProfile:
 
+    @allure.title('Проверка перехода в личный кабинет по клику на "Личный кабинет"')
     def test_of_transition_to_login_page_after_clicking_on_a_link_in_header(self, driver_setup):
         account_access_page = AccountAccessPage(driver_setup)
         account_access_page.get_to_link(Links.main_page)
@@ -22,6 +21,7 @@ class TestPersonalAccountProfile:
         current_url = account_access_page.current_url()
         assert current_url == Links.login_page
 
+    @allure.title('Проверка перехода в раздел история заказа по клику "История заказа"')
     def test_of_transition_to_order_history_section_after_clicking_on_a_link(self, driver_setup, setup_user):
         account_access_page = AccountAccessPage(driver_setup)
         account_access_page.get_to_link(Links.main_page)
@@ -49,6 +49,7 @@ class TestPersonalAccountProfile:
         current_url = account_access_page.current_url()
         assert current_url == Links.profile_order_history_page
 
+    @allure.title('Проверка деавторизации и перехода на страницу авторизации после клика по кнопке "Выход"')
     def test_successful_logout_after__clicking_on_a_button(self, driver_setup, setup_user):
         account_access_page = AccountAccessPage(driver_setup)
         account_access_page.get_to_link(Links.main_page)
@@ -74,4 +75,3 @@ class TestPersonalAccountProfile:
                                               (AccountAccessLocators.AUTHORIZATION_FORM_TITLE))
         current_url = account_access_page.current_url()
         assert current_url == Links.login_page
-
