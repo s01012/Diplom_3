@@ -29,12 +29,3 @@
 при создании нового заказа счётчик Выполнено за всё время увеличивается,
 при создании нового заказа счётчик Выполнено за сегодня увеличивается,
 после оформления заказа его номер появляется в разделе В работе.
-
-Часть тестов не проходит в браузере FireFox из-за невидимого модального окна:
-TestOrderPage.test_visible_id_in_work_order[firefox] 
-TestOrderPage.test_daily_time_counter_value_increases[firefox]
- TestOrderPage.test_all_time_counter_value_increases[firefox]
-TestOrderPage.test_identical_order_id[firefox]
-
-Кроме того, тест по сравнению идентификаторов всех заказов и дневных заказов, падают и браузере Chrome по причине того, 
-что счетчик сбивается, поскольку данные заитираются другими студентами во время тестов.
