@@ -114,7 +114,7 @@ class TestOrderPage:
         assert current_value > counter_value
 
     @allure.title('Проверка отображения идентификатора заказа в разделе "В работе" после совершения заказа')
-    def test_daily_time_counter_value_increases(self, driver_setup, setup_user):
+    def test_visible_id_in_work_order(self, driver_setup, setup_user):
         order_page = OrderPage(driver_setup)
         order_page.get_to_link(Links.main_page)
         WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
@@ -142,4 +142,3 @@ class TestOrderPage:
                                                                                                 ORDER_DASHBOARD_LINK))
         number_of_order = order_page.getting_number_order()
         assert f'0{order_id_in_form}' == number_of_order
-

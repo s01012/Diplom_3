@@ -31,14 +31,6 @@ class OrderPage(HomePage):
         else:
             return False
 
-    @allure.step('Поиск идентификатора заказа в "Истории заказа"')
-    def getting_id_in_history_page_order(self):
-        return self.get_text(DashboardOrderPageLocators.ALL_ORDER_LIST_IN_PROFILE)
-
-    @allure.step('Поиск идентификатора заказа в "Лента заказов"')
-    def getting_id_in_history_page_order(self):
-        return self.get_text(DashboardOrderPageLocators.ALL_ORDER_LIST_IN_PROFILE)
-
     @allure.step('Поиск количества заказов')
     def getting_count_orders(self, locator):
         return self.get_text(locator)
