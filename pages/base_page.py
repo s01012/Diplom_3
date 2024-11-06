@@ -17,9 +17,7 @@ class BasePage:
 
     @allure.step("Клик по элементу")
     def click_element(self, locator):
-        WebDriverWait(self.driver_setup, 10).until(
-            expected_conditions.visibility_of_element_located(locator)
-        ).click()
+        self.find_element(locator).click()
 
     @allure.step("Переход по ссылке")
     def get_to_link(self, links: str):
@@ -31,9 +29,7 @@ class BasePage:
 
     @allure.step("Скроллинг к элементу")
     def scroll_to_element(self, locator):
-        scroll_to_element = WebDriverWait(self.driver_setup, 10).until(
-            expected_conditions.visibility_of_element_located(locator)
-        )
+        scroll_to_element = self.find_element(locator)
         self.driver_setup.execute_script(
             "arguments[0].scrollIntoView(true);", scroll_to_element
         )
@@ -87,3 +83,36 @@ class BasePage:
         x = body.size['width'] / 2
         y = body.size['height'] / 2
         ActionChains(self.driver_setup).move_by_offset(x, y).click().perform()
+
+    @allure.step('Убираем модальное окно Modal_modal_overlay__x2ZCr')
+    def close_modal_overlay(self):
+        self.driver_setup.execute_script("""
+            var element = document.querySelector('.Modal_modal_overlay__x2ZCr');
+            if (element) {
+                element.parentNode.removeChild(element);
+            }
+        """)
+
+    @allure.step('Проверить невидимость элемента Modal_modal_overlay__x2ZCr')
+    def wait_for_overlay_to_disappear(self):
+        WebDriverWait(self.driver_setup, 10).until(
+            expected_conditions.invisibility_of_element_located((By.CSS_SELECTOR, '.Modal_modal_overlay__x2ZCr'))
+        )
+
+    @allure.step('Проверить смену текста')
+    def wait_for_text_change(self, locator, original_text):
+        WebDriverWait(self.driver_setup, 30).until(
+            lambda d: d.find_element(*locator).text != original_text
+        )
+
+    @allure.step('Дождаться кликабельности элемента')
+    def wait_for_element_to_be_clickable(self, locator):
+        WebDriverWait(self.driver_setup, 30).until(expected_conditions.element_to_be_clickable(locator))
+
+    @allure.step('Проверить невидимость элемента')
+    def wait_invisibility(self, locator):
+        return WebDriverWait(self.driver_setup, 30).until(expected_conditions.invisibility_of_element(locator))
+
+    @allure.step('Ждем когда элемент станет видим')
+    def wait_element_visibility(self, locator):
+        return WebDriverWait(self.driver_setup, 30).until(expected_conditions.visibility_of_element_located(locator))

@@ -25,3 +25,15 @@ class AccountAccessPage(HomePage):
     @allure.step('Клик на кнопку "Выйти" в личном кабинете')
     def click_to_exit_button(self):
         self.click_element(AccountProfileLocators.BUTTON_TO_EXIT)
+
+    @allure.step('Дождаться загрузки "Ссылки на личный кабинет"')
+    def wait_authorization_form_title_visibility(self):
+        return self.wait_element_visibility(AccountAccessLocators.AUTHORIZATION_FORM_TITLE)
+
+    @allure.step('Дождаться загрузки раздела "Смены персональных данных"')
+    def wait_text_in_account_profile_visibility(self):
+        return self.wait_element_visibility(AccountProfileLocators.TEXT_IN_ACCOUNT_PROFILE)
+
+    @allure.step('Дождаться невидимости оверлей"')
+    def wait_overlay_invisibility(self):
+        return self.wait_invisibility(AccountProfileLocators.OVERLAY)

@@ -28,3 +28,11 @@ class PasswordRecoveryPage(BasePage):
     @allure.step('Находим активное поле пароль')
     def search_active_field_password(self):
         return self.find_element(PasswordRecoveryLocators.ACTIVE_PASSWORD_INPUT_RECOVERY_FORM)
+
+    @allure.step('Дождаться загрузки "Заголовок формы восстановления пароля"')
+    def wait_recovery_form_title_visibility(self):
+        return self.wait_element_visibility(PasswordRecoveryLocators.RECOVERY_FORM_TITLE)
+
+    @allure.step('Дождаться загрузки "Заголовок формы восстановления пароля"')
+    def wait_restore_label_in_input_code_visibility(self):
+        return self.wait_element_visibility(PasswordRecoveryLocators.RESTORE_LABEL_IN_INPUT_CODE)

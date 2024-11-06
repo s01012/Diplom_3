@@ -48,3 +48,19 @@ class HomePage(BasePage):
     @allure.step('Проверка открытия окна с id заказа')
     def is_title_popup_order_visible(self):
         return self.get_text(HomePageLocators.TITLE_ID)
+
+    @allure.step('Дождаться загрузки "Ссылки на личный кабинет"')
+    def wait_link_account_visibility(self):
+        return self.wait_element_visibility(HomePageLocators.LINK_ACCOUNT_BUTTON)
+
+    @allure.step('Дождаться загрузки кнопки "Оформить заказ"')
+    def wait_checkout_button_visibility(self):
+        return self.wait_element_visibility(HomePageLocators.CHECKOUT_BUTTON)
+
+    @allure.step('Дождаться загрузки "Лента заказов"')
+    def wait_dashboard_link_visibility(self):
+        return self.wait_element_visibility(HomePageLocators.ORDER_DASHBOARD_LINK)
+
+    @allure.step('Дождаться загрузки "Заголовка ID"')
+    def wait_title_id_visibility(self):
+        return self.wait_element_visibility(HomePageLocators.TITLE_ID)

@@ -1,9 +1,8 @@
 import allure
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from utils.locators import *
 from utils.links import *
 from pages.home_page import HomePage
+from pages.account_access_page import AccountAccessPage
+from pages.order_page import OrderPage
 
 
 class TestHomePage:
@@ -11,28 +10,24 @@ class TestHomePage:
     @allure.title('Проверка перехода в "Конструктор"')
     def test_of_transition_to_construct_page_after_clicking_on_a_link_in_header(self, driver_setup):
         home_page = HomePage(driver_setup)
+        account_access_page = AccountAccessPage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         home_page.click_account_link()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.
-                                              visibility_of_element_located(AccountAccessLocators.
-                                                                            AUTHORIZATION_FORM_TITLE))
+        account_access_page.wait_authorization_form_title_visibility()
         home_page.click_construct_link()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         current_url = home_page.current_url()
         assert current_url == Links.main_page+f'/'
 
     @allure.title('Проверка перехода в "Лента заказа"')
     def test_of_transition_to_dashboard_order_page_after_clicking_on_a_link_in_header(self, driver_setup):
         home_page = HomePage(driver_setup)
+        order_page = OrderPage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         home_page.click_dashboard_link()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.
-                                              visibility_of_element_located(DashboardOrderPageLocators.TITLE_ORDER_DASHBOARD))
+        order_page.wait_title_order_dashboard_visibility()
         current_url = home_page.current_url()
         assert current_url == Links.feed_page
 
@@ -40,21 +35,17 @@ class TestHomePage:
     def test_visible_title_popup_ingredient_after_clicking_on_a_ingredient(self, driver_setup):
         home_page = HomePage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         home_page.click_in_ingredient()
         current_text = home_page.is_title_popup_ingredient_visible()
         assert "Детали ингредиента" == current_text
 
     @allure.title('Проверка закрытия всплывающего окна после клика по крестику')
-    def test_visible_title_popup_ingredient_after_clicking_on_a_ingredient(self, driver_setup):
+    def test_popup_ingredient_closes_after_clicking_cross_button(self, driver_setup):
         home_page = HomePage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         home_page.click_in_ingredient()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.
-                                              invisibility_of_element_located(DashboardOrderPageLocators.TITLE_ORDER_DASHBOARD))
         home_page.close_popup_window()
         assert home_page.is_title_popup_ingredient_invisible() == False
 
@@ -62,33 +53,29 @@ class TestHomePage:
     def test_ingredient_total(self, driver_setup):
         home_page = HomePage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
-        current_value = home_page.get_text(HomePageLocators.INGREDIENTS_AMOUNT)
+        home_page.wait_link_account_visibility()
+        current_value = home_page.extract_ingredients_amount()
         home_page.add_ingredients_to_order_cart()
-        actual_value = home_page.get_text(HomePageLocators.INGREDIENTS_AMOUNT)
+        actual_value = home_page.extract_ingredients_amount()
         assert int(actual_value) > int(current_value)
 
     @allure.title('Проверка оформления заказа авторизованным пользователем')
     def test_order_checkout_for_logged_user(self, driver_setup, setup_user):
         home_page = HomePage(driver_setup)
+        account_access_page = AccountAccessPage(driver_setup)
+        order_page = OrderPage(driver_setup)
         home_page.get_to_link(Links.main_page)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                LINK_ACCOUNT_BUTTON))
+        home_page.wait_link_account_visibility()
         home_page.click_account_link()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.
-                                              visibility_of_element_located(AccountAccessLocators.
-                                                                            AUTHORIZATION_FORM_TITLE))
+        account_access_page.wait_authorization_form_title_visibility()
         email = setup_user.get('email')
         password = setup_user.get('password')
-        home_page.set_text(AccountAccessLocators.EMAIL_INPUT_AUTHORIZATION_FORM, email)
-        home_page.set_text(AccountAccessLocators.PASSWORD_INPUT_AUTHORIZATION_FORM, password)
-        home_page.click_element(AccountAccessLocators.AUTHORIZATION_BUTTON_AUTHORIZATION_FORM)
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                CHECKOUT_BUTTON))
+        account_access_page.set_email(email)
+        account_access_page.set_password(password)
+        account_access_page.click_authorization_button()
+        order_page.wait_checkout_button_visibility()
         home_page.add_ingredients_to_order_cart()
         home_page.click_to_checkout_button()
-        WebDriverWait(driver_setup, 10).until(expected_conditions.visibility_of_element_located(HomePageLocators.
-                                                                                                TITLE_ID))
+        home_page.wait_title_id_visibility()
         current_text = home_page.is_title_popup_order_visible()
         assert current_text == 'идентификатор заказа'
