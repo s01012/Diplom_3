@@ -28,11 +28,11 @@ class AccountAccessPage(HomePage):
 
     @allure.step('Дождаться загрузки "Ссылки на личный кабинет"')
     def wait_authorization_form_title_visibility(self):
-        return self.wait_element_visibility(AccountAccessLocators.AUTHORIZATION_FORM_TITLE)
+        return self.find_element(AccountAccessLocators.AUTHORIZATION_FORM_TITLE)
 
     @allure.step('Дождаться загрузки раздела "Смены персональных данных"')
     def wait_text_in_account_profile_visibility(self):
-        return self.wait_element_visibility(AccountProfileLocators.TEXT_IN_ACCOUNT_PROFILE)
+        return self.find_element(AccountProfileLocators.TEXT_IN_ACCOUNT_PROFILE)
 
     @allure.step('Дождаться невидимости оверлей"')
     def wait_overlay_invisibility(self):

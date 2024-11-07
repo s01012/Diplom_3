@@ -51,16 +51,16 @@ class HomePage(BasePage):
 
     @allure.step('Дождаться загрузки "Ссылки на личный кабинет"')
     def wait_link_account_visibility(self):
-        return self.wait_element_visibility(HomePageLocators.LINK_ACCOUNT_BUTTON)
+        return self.find_element(HomePageLocators.LINK_ACCOUNT_BUTTON)
 
     @allure.step('Дождаться загрузки кнопки "Оформить заказ"')
     def wait_checkout_button_visibility(self):
-        return self.wait_element_visibility(HomePageLocators.CHECKOUT_BUTTON)
+        return self.find_element(HomePageLocators.CHECKOUT_BUTTON)
 
     @allure.step('Дождаться загрузки "Лента заказов"')
     def wait_dashboard_link_visibility(self):
-        return self.wait_element_visibility(HomePageLocators.ORDER_DASHBOARD_LINK)
+        return self.find_element(HomePageLocators.ORDER_DASHBOARD_LINK)
 
     @allure.step('Дождаться загрузки "Заголовка ID"')
     def wait_title_id_visibility(self):
-        return self.wait_element_visibility(HomePageLocators.TITLE_ID)
+        return self.find_element(HomePageLocators.TITLE_ID)

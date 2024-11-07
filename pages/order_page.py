@@ -67,11 +67,11 @@ class OrderPage(HomePage):
 
     @allure.step('Дождаться загрузки "Всех заказов"')
     def wait_all_order_list_in_dashboard_visibility(self):
-        return self.wait_element_visibility(DashboardOrderPageLocators.ALL_ORDER_LIST_IN_DASHBOARD)
+        return self.find_element(DashboardOrderPageLocators.ALL_ORDER_LIST_IN_DASHBOARD)
 
     @allure.step('Дождаться загрузки "Лента заказов"')
     def wait_title_order_dashboard_visibility(self):
-        return self.wait_element_visibility(DashboardOrderPageLocators.TITLE_ORDER_DASHBOARD)
+        return self.find_element(DashboardOrderPageLocators.TITLE_ORDER_DASHBOARD)
 
     @allure.step('Закрытие попап окна по крестику')
     def click_to_cross(self):
