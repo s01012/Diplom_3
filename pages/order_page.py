@@ -57,6 +57,7 @@ class OrderPage(HomePage):
     def getting_number_order(self):
         return self.get_text(DashboardOrderPageLocators.NUMBER_OF_ORDER)
 
+    @allure.step('Ожидание смены дефолтного номера заказа (9999)')
     def wait_until_not_9999(self):
         self.wait_for_text_change(HomePageLocators.ORDER_ID, original_text='9999')
 
@@ -75,5 +76,3 @@ class OrderPage(HomePage):
     @allure.step('Закрытие попап окна по крестику')
     def click_to_cross(self):
         self.click_element(DashboardOrderPageLocators.BUTTON_CLOSE_ORDER)
-
-

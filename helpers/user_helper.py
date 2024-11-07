@@ -9,6 +9,7 @@ class ManipulationUserData:
     dict_registration = {}
 
     @classmethod
+    @allure.step('Подготовка тестовых данных для пользователя')
     def setup_class(cls):
         alphabet = [chr(i) for i in range(97, 123)]
         cls.dict_registration = {
@@ -17,7 +18,7 @@ class ManipulationUserData:
             'name': (''.join(random.sample(alphabet, 4)) + f'_test_{random.randint(100, 999)}')
         }
 
-    @allure.title('Отправляем POST запрос на создание пользователя с неиспользованными ранее данными')
+    @allure.step('Создание нового пользователя')
     def create_user(self):
         payload = {
             'email': self.dict_registration.get('email'),
@@ -30,6 +31,7 @@ class ManipulationUserData:
 
 
     @classmethod
+    @allure.step('Удаление созданного пользователя')
     def teardown_class(cls):
         cls.payload = {
             'email': cls.dict_registration.get('email'),
