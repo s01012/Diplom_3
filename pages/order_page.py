@@ -17,14 +17,6 @@ class OrderPage(HomePage):
     def getting_all_order_user(self):
         return self.find_elements(DashboardOrderPageLocators.ALL_ORDER_LIST_IN_PROFILE)
 
-    @allure.step('Ввод значения в поле e-mail')
-    def set_email(self, email):
-        self.set_text(AccountAccessLocators.EMAIL_INPUT_AUTHORIZATION_FORM, email)
-
-    @allure.step('Ввод значения в поле password')
-    def set_password(self, password):
-        self.set_text(AccountAccessLocators.PASSWORD_INPUT_AUTHORIZATION_FORM, password)
-
     @allure.step('Верификация отображения формы с составом заказа')
     def is_title_config_order_visible(self):
         return self.find_element(DashboardOrderPageLocators.TITLE_ORDER_DASHBOARD).is_displayed()
@@ -51,7 +43,7 @@ class OrderPage(HomePage):
 
     @allure.step('Получение ID заказа в форме заказа')
     def getting_order_id(self):
-        return self.get_text(HomePageLocators.ORDER_ID)
+        return self.get_text(DashboardOrderPageLocators.ORDER_ID)
 
     @allure.step('Получение ID заказа в разделе "В работе"')
     def getting_number_order(self):
@@ -59,11 +51,11 @@ class OrderPage(HomePage):
 
     @allure.step('Ожидание смены дефолтного номера заказа (9999)')
     def wait_until_not_9999(self):
-        self.wait_for_text_change(HomePageLocators.ORDER_ID, original_text='9999')
+        self.wait_for_text_change(DashboardOrderPageLocators.ORDER_ID, original_text='9999')
 
     @allure.step('Ожидание кликабельности идентификатора заказа в попап окне')
     def wait_clickable_id_order(self):
-        self.wait_for_element_to_be_clickable(HomePageLocators.ORDER_ID)
+        self.wait_for_element_to_be_clickable(DashboardOrderPageLocators.ORDER_ID)
 
     @allure.step('Дождаться загрузки "Всех заказов"')
     def wait_all_order_list_in_dashboard_visibility(self):

@@ -25,28 +25,10 @@ class HomePageLocators:
 
     LINK_CONSTRUCT = [By.XPATH, '//p[text()="Конструктор"]/parent::a'] # Линк конструктора
 
-    ORDER_ID = [By.XPATH, '//h2[contains(@class, "Modal_modal__title_shadow__3ikwq")]'] # Идентификатор заказа
-
-
-class AccountProfileLocators:
-
-    """Локаторы для работы с личной страницей"""
-    LINK_TO_PROFILE = [By.XPATH, '//a[text()="Профиль"]'] #Ссылка на раздел профиля в ЛК
-
-    LINK_TO_HISTORY_ORDER = [By.XPATH, '//a[text()="История заказов"]']
-
-    BUTTON_TO_EXIT = [By.XPATH, '//button[text()="Выход"]']
-
-    TEXT_IN_ACCOUNT_PROFILE = [By.XPATH, '//p[text()="В этом разделе вы можете изменить свои персональные данные"]']
-
-    SAVE_BUTTON = [By.XPATH, '//button[text()="Сохранить"]']
-
-    OVERLAY = [By.XPATH, "//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"]
-
 
 class AccountAccessLocators:
 
-    """Локаторы для работы с авторизацией пользователей"""
+    """Локаторы для работы с авторизацией пользователей и учетной записью"""
     AUTHORIZATION_FORM_TITLE = [By.XPATH, '//h2[text()="Вход"]'] # Заголовок формы авторизации
 
     EMAIL_INPUT_AUTHORIZATION_FORM = [By.XPATH, '//div[h2[text()="Вход"]]/descendant::label[text('
@@ -59,6 +41,14 @@ class AccountAccessLocators:
 
     AUTHORIZATION_BUTTON_AUTHORIZATION_FORM = [By.XPATH, './/form[@class="Auth_form__3qKeq mb-20"]/button[text('
                                                          ')="Войти"]']  # Кнопка войти в форме авторизации
+
+    LINK_TO_HISTORY_ORDER = [By.XPATH, '//a[text()="История заказов"]']
+
+    BUTTON_TO_EXIT = [By.XPATH, '//button[text()="Выход"]']
+
+    TEXT_IN_ACCOUNT_PROFILE = [By.XPATH, '//p[text()="В этом разделе вы можете изменить свои персональные данные"]']
+
+    OVERLAY = [By.XPATH, "//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"]
 
 
 class PasswordRecoveryLocators:
@@ -113,3 +103,5 @@ class DashboardOrderPageLocators:
                                  'contains(@class, "mb-2")]'] # Номер заказа
 
     BUTTON_CLOSE_ORDER = [By.XPATH, '//button[contains(@class, "Modal_modal__close")][1]']
+
+    ORDER_ID = [By.XPATH, '//h2[contains(@class, "Modal_modal__title_shadow__3ikwq")]']  # Идентификатор заказа

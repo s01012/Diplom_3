@@ -1,5 +1,4 @@
 import allure
-from pages.base_page import BasePage
 from pages.home_page import HomePage
 from utils.locators import *
 
@@ -20,11 +19,11 @@ class AccountAccessPage(HomePage):
 
     @allure.step('Клик на ссылку раздела "История заказа" на странице профиля')
     def click_link_order_history(self):
-        self.click_element(AccountProfileLocators.LINK_TO_HISTORY_ORDER)
+        self.click_element(AccountAccessLocators.LINK_TO_HISTORY_ORDER)
 
     @allure.step('Клик на кнопку "Выйти" в личном кабинете')
     def click_to_exit_button(self):
-        self.click_element(AccountProfileLocators.BUTTON_TO_EXIT)
+        self.click_element(AccountAccessLocators.BUTTON_TO_EXIT)
 
     @allure.step('Дождаться загрузки "Ссылки на личный кабинет"')
     def wait_authorization_form_title_visibility(self):
@@ -32,8 +31,8 @@ class AccountAccessPage(HomePage):
 
     @allure.step('Дождаться загрузки раздела "Смены персональных данных"')
     def wait_text_in_account_profile_visibility(self):
-        return self.find_element(AccountProfileLocators.TEXT_IN_ACCOUNT_PROFILE)
+        return self.find_element(AccountAccessLocators.TEXT_IN_ACCOUNT_PROFILE)
 
     @allure.step('Дождаться невидимости оверлей"')
     def wait_overlay_invisibility(self):
-        return self.wait_invisibility(AccountProfileLocators.OVERLAY)
+        return self.wait_invisibility(AccountAccessLocators.OVERLAY)

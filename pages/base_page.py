@@ -95,7 +95,7 @@ class BasePage:
 
     @allure.step('Проверить невидимость элемента Modal_modal_overlay__x2ZCr')
     def wait_for_overlay_to_disappear(self):
-        WebDriverWait(self.driver_setup, 10).until(
+        WebDriverWait(self.driver_setup, 30).until(
             expected_conditions.invisibility_of_element_located((By.CSS_SELECTOR, '.Modal_modal_overlay__x2ZCr'))
         )
 
